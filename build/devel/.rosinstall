@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/zhangheng/ros/hydro/mystacks/ecjtu_rgbd_slam/build/devel/setup.sh

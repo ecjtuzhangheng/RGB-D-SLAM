@@ -1,0 +1,52 @@
+<package>
+  <description brief="ecjtu_rgbd_slam">
+
+     ecjtu_rgbd_slam
+
+  </description>
+  <author>Christian Kerl</author>
+  <license>GPL</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/ecjtu_rgbd_slam</url>
+  <depend package="roscpp"/>
+  <depend package="pcl_ros"/>
+  <depend package="pcl_1_7"/>
+  <depend package="nav_msgs"/>
+  <depend package="std_srvs"/>
+  <depend package="tf"/>
+  <depend package="dynamic_reconfigure" />
+  <depend package="cv_bridge"/>
+  <depend package="sensor_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="visualization_msgs"/>
+  <depend package="image_transport"/>
+  <depend package="image_geometry"/>
+  <depend package="nodelet"/>
+  <depend package="lib_rgbdtools"/>
+  <depend package="message_filters"/>
+  
+  
+  <depend package="tf_conversions"/>
+  <depend package="eigen_conversions"/>
+  
+  <depend package="interactive_markers"/>
+  
+  <depend package="dvo_core"/>
+  <depend package="dvo_ros"/>
+  
+  <depend package="ccny_rgbd"/>  
+<!--  <depend package="mrpt_msgs"/>
+  <depend package="mrpt_libs"/>-->
+  
+
+  <rosdep name="eigen" />
+
+  
+  <export>
+      <nodelet plugin="${prefix}/nodelet_plugins.xml" />
+      <cpp cflags="-I${prefix}/include -I${prefix}/cfg/cpp"
+        lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -lecjtu_rgbd_slam"/>
+  </export>
+</package>
+
+

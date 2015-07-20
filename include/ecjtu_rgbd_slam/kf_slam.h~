@@ -1,0 +1,49 @@
+#include <mrpt/base.h>
+#include <mrpt/slam.h>
+#include <mrpt/obs.h>
+
+using namespace mrpt;
+using namespace mrpt::slam;
+using namespace mrpt::system;
+using namespace mrpt::math;
+using namespace mrpt::utils;
+using namespace std;
+
+CRangeBearingKFSLAM mapping;
+
+
+
+	
+CActionCollectionPtr	action;
+CSensoryFramePtr		observations;
+
+CPose3DQuatPDFGaussian   robotPose;
+vector<TPose3D>  meanPath; // The estimated path
+/*
+action = 
+observations = */
+
+
+std::vector<CPoint3D>	 LMs;
+std::map<unsigned int,CLandmark::TLandmarkID>    LM_IDs;
+CMatrixDouble  fullCov;
+CVectorDouble  fullState;
+
+mapping.processActionObservation(action,observations);
+const double tim_kf_iter = kftictac.Tac();
+
+// Get current state:
+// -------------------------------
+mapping.getCurrentState( robotPose,LMs,LM_IDs,fullState,fullCov );
+
+// Get the mean robot pose as 3D:
+const CPose3D robotPoseMean3D = CPose3D(robotPose.mean);
+// Build the path:
+meanPath.push_back( TPose3D(robotPoseMean3D) );
+// Free rawlog items memory:
+// --------------------------------------------
+action.clear_unique();
+observations.clear_unique();
+
+
+

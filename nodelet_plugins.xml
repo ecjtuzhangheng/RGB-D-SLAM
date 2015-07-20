@@ -1,0 +1,7 @@
+<library path="lib/libcamera_tracker_nodelet">
+  <class name="ecjtu_rgbd_slam/camera_tracker" type="ecjtu_rgbd_slam::CameraTrackerNodelet" base_class_type="nodelet::Nodelet">
+    <description>
+      CameraTrackerNodelet
+    </description>
+  </class>
+</library>

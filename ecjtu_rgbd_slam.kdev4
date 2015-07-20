@@ -1,0 +1,3 @@
+[Project]
+Manager=KDevCMakeManager
+Name=ecjtu_rgbd_slam

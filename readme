@@ -1,0 +1,3 @@
+roslaunch openni_launch openni.launch depth_registration:=true
+ 
+roslaunch ecjtu_rgbd_slam quickstart.launch
