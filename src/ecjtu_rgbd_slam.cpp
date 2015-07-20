@@ -230,6 +230,7 @@ void EcjtuRgbdSLAM::resetDetector()
 //   orb_config_server_.reset();
 //   surf_config_server_.reset();
 //
+  
     if (detector_type_ == "ORB")
     {
         ROS_INFO("Creating ORB detector");
@@ -348,7 +349,7 @@ void EcjtuRgbdSLAM::initParams()
 //     landmark_count = 0;
     step = 0;
     CAMERA_3DSCENE_FOLLOWS_ROBOT = false;
-    win3d = mrpt::gui::CDisplayWindow3D::Create("KF-SLAM live view",800,500);
+    win3d = mrpt::gui::CDisplayWindow3D::Create("RGB-D-SLAM live view",800,500);
 //   if (!nh_private_.getParam ("publish_tf", publish_tf_))
     publish_tf_ = true;
 //   if (!nh_private_.getParam ("publish_path", publish_path_))
@@ -372,7 +373,7 @@ void EcjtuRgbdSLAM::initParams()
 //   if (!nh_private_.getParam ("feature/publish_feature_covariances", publish_feature_cov_))
     publish_feature_cov_ = true;
 //   if (!nh_private_.getParam ("feature/detector_type", detector_type_))
-    detector_type_ = "GFT";
+    detector_type_ = "SURF";
 //     detector_type_ = "STAR";
 //
     smooth = 5;
@@ -393,7 +394,7 @@ void EcjtuRgbdSLAM::initParams()
 
 
 
-mapping.KF_options.method = kfEKFNaive;
+mapping.KF_options.method = kfIKF;
 
 
 
@@ -847,24 +848,7 @@ void EcjtuRgbdSLAM::handleImages(
     sw_match.stopAndPrint();
     
     
-    
-        
-//     1.000000       -0.000051         0.000034          -0.000075
-//     0.000051        1.000000         0.000272          -0.001190
-//    -0.000034       -0.000273         1.000000          -0.000071
-//     0.000000        0.000000         0.000000           1.000000
-   
-     transform(0,1) = transform(0,1) + 0.000051;
-     transform(0,2) = transform(0,2) - 0.000034;
-    transform(0,3) = transform(0,3) + 0.000075;
-     transform(1,0) = transform(1,0) - 0.000051;
-     transform(1,2) = transform(1,2) - 0.000272;
-    transform(1,3) = transform(1,3) + 0.001190;
-     transform(2,0) = transform(2,0) + 0.000034;
-     transform(2,1) = transform(2,1) + 0.000272;
-    transform(2,3) = transform(2,3) + 0.000071;
-    
-    
+       
 
 
     //如果匹配成功，有可能形成一次环境特征观测
